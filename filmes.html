@@ -1,0 +1,64 @@
+// meu malvado favorito, LIVRE, comedia, infantil
+// guardiões da galáxia, 12, fantasia, ação
+// homem aranha sem volta pra casa, 12, açao, fantasia, aventura
+// o telefone preto, 16, terror, açao
+// uma noite de crime, 16, terror, suspense
+// todos menos voce, 16, comedia , romance
+
+let campoIdade;
+let campoFantasia;
+let campoAventura;
+
+function setup() {
+  createCanvas(800, 400);
+  createElement("h2", "Recomendador de filmes");
+  createSpan("Sua idade:");
+  campoIdade = createInput("5");
+  campoFantasia = createCheckbox("Gosta de fantasia?");
+  campoAventura = createCheckbox("Gosta de aventura?");
+  campoTerror = createCheckbox("Gosta de terror");
+  campoRomance = createCheckbox("Gosta de romance?");
+  campoComedia = createCheckbox("Gosta de comedia?");
+  campoAção = createCheckbox("Gosta de ação?");
+}
+
+function draw() {
+  background("#FFEB3B");
+  let idade = campoIdade.value();
+  let gostaDeFantasia = campoFantasia.checked();
+  let gostaDeAventura = campoAventura.checked();
+  let recomendacao = geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura);
+
+  fill(color(76, 0, 115));
+  textAlign(CENTER, CENTER);
+  textSize(38);
+  text(recomendacao, width / 2, height / 2);
+}
+
+function geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura) {
+  if (idade >= 10) {
+    if (idade >= 14) {
+      return "todos menos voce";
+    } else {
+      if (idade >= 12) {
+        if(gostaDeFantasia || gostaDeAventura) {
+          return "Homem aranha: no aranhaverso";          
+        } else{
+         return "uma noite de crime";
+        }
+      } else {
+        if (gostaDeFantasia) {
+          return "o telefone preto";
+        } else {
+          return "homem aranha sem volta pra casa";
+        }
+      }
+    }
+  } else {
+    if (gostaDeFantasia) {
+      return "guardiões da galaxia ";
+    } else {
+      return "meu malvado favorito";
+    }
+  }
+}
